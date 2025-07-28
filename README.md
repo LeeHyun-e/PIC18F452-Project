@@ -5,7 +5,7 @@
 // Definition of necessary register typedefs
 
 //TMR0L
-
+---
 typedef union 
 {
     struct{
@@ -21,7 +21,7 @@ typedef union
     };
     unsigned char byte;
 }TMR0L_t;
-
+---
 extern volatile TMR0L_t My_TMR0L               __at(0xFD6);
 
 //T0CON
