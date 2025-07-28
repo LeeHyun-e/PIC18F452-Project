@@ -23,6 +23,7 @@ typedef union
 
 extern volatile TMR0L_t My_TMR0L               __at(0xFD6);
 ```
+```
 //T0CON
 typedef union 
 {
@@ -41,6 +42,7 @@ typedef union
 }T0CON_t;
 
 extern volatile T0CON_t My_T0CON                __at(0xFD5);
+```
 ```
 //INTCON - PEIE/GIE
 typedef union 
@@ -61,7 +63,8 @@ typedef union
 }INTCON_t;
 
 extern volatile INTCON_t My_INTCON              __at(0xFF2);
-
+```
+```
 //TRISD
 typedef union 
 {
@@ -80,7 +83,8 @@ typedef union
 }TRISD_t;
 
 extern volatile TRISD_t My_TRISD               __at(0xF95);
-
+```
+```
 //PORTD
 typedef union 
 {
@@ -99,27 +103,31 @@ typedef union
 }PORTD_t;
 
 extern volatile PORTD_t My_PORTD               __at(0xF83);
+```
 
 
 // Start of code //LED_Flow_Timer0_8bit
 
+```
 #define _XTAL_FREQ 16000000   // Define the crystal oscillator frequency as 16 MHz
 
 #pragma config OSC = HS     // Configure oscillator: High-Speed PLL enabled
 #pragma config WDT = OFF    // Turn off Watchdog Timer to prevent unexpected resets during development
 #pragma config PWRT = OFF   // Disable Power-up Timer to speed up startup time during development
 #pragma config BOR = OFF    // Disable Brown-out Reset to avoid resets when voltage dips slightly during development
-
+```
+```
 
 unsigned int count = 0;
-
-
+```
+```
 void INTCON_Init();
 void T0CON_Init();
+```
 
 
 
-
+```
 void main(void) {
     
     My_TRISD.byte = 0x00;
@@ -136,9 +144,9 @@ void main(void) {
 
 }
 
+```
 
-
-
+```
 void INTCON_Init() 
 {
     My_INTCON.GIE = 1;   
@@ -150,9 +158,8 @@ void INTCON_Init()
     //My_INTCON.INT0IE    
     My_INTCON.TMR0IE = 1;  
 }
-
-
-
+```
+```
 void T0CON_Init()
 {
 
@@ -166,8 +173,8 @@ void T0CON_Init()
     My_T0CON.TMR0ON = 1;  // Timer0 On/Off Control bit 
 
 }
-
-
+```
+```
 void __interrupt() Isr_Tmr0(void)
 {
     
@@ -190,3 +197,5 @@ void __interrupt() Isr_Tmr0(void)
         }
     }
 }
+```
+
