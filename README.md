@@ -117,7 +117,6 @@ extern volatile PORTD_t My_PORTD               __at(0xF83);
 #pragma config BOR = OFF    // Disable Brown-out Reset to avoid resets when voltage dips slightly during development
 ```
 ```
-
 unsigned int count = 0;
 ```
 ```
