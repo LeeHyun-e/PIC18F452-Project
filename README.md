@@ -5,6 +5,7 @@
 // Definition of necessary register typedefs
 
 //TMR0L
+
 typedef union 
 {
     struct{
