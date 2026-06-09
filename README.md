@@ -87,21 +87,22 @@ Timer0 overflow가 발생하면 TMR0IF flag가 set되고 ISR이 실행됩니다.
 ISR 내부에서는 먼저 interrupt flag를 clear한 뒤, overflow 발생 횟수를 count 변수로 누적합니다.
 지정한 횟수에 도달하면 PORTD 전체 값을 반전시켜 LED 상태를 토글합니다.
 
-Timer0 주기 계산
+### Timer0 주기 계산
 
 본 코드에서는 16 MHz oscillator를 기준으로 Timer0를 내부 clock source로 사용했습니다.
 
-Oscillator frequency: 16 MHz
-Instruction clock: Fosc / 4 = 4 MHz
-Prescaler: 1:4
-Timer0 input clock: 1 MHz
-Timer0 tick period: 1 us
-8-bit overflow period: 256 us
+- Oscillator frequency: 16 MHz
+-Instruction clock: Fosc / 4 = 4 MHz
+- Prescaler: 1:4
+- Timer0 input clock: 1 MHz
+- Timer0 tick period: 1 us
+- 8-bit overflow period: 256 us
 
 따라서 Timer0 overflow가 7812회 발생하면 약 2초가 됩니다.
 
+```text 
 256 us × 7812 ≈ 1.999872 s
-
+```
 즉, 현재 설정에서는 약 2초마다 PORTD 출력이 반전됩니다.
 
 
