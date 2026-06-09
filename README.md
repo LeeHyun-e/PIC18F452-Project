@@ -48,10 +48,10 @@ My_INTCON.GIE = 1;
 My_INTCON.PEIE = 1;
 My_INTCON.TMR0IF = 0;
 My_INTCON.TMR0IE = 1;
-
+```
 GIE를 통해 전체 인터럽트를 허용하고, TMR0IE를 통해 Timer0 overflow interrupt를 활성화했습니다.
 TMR0IF는 Timer0 overflow 발생 여부를 나타내는 flag이므로, 초기화 과정에서 0으로 clear했습니다.
-```
+
 ### Timer0 설정
 ```c
 My_T0CON.T0PS0 = 1;
@@ -61,11 +61,11 @@ My_T0CON.PSA = 0;
 My_T0CON.T0CS = 0;
 My_T0CON.T08BIT = 1;
 My_T0CON.TMR0ON = 1;
-
+```
 T0CS = 0으로 설정하여 Timer0의 clock source로 내부 instruction cycle clock을 사용했습니다.
 T08BIT = 1을 통해 Timer0를 8-bit mode로 설정했고, PSA = 0으로 prescaler를 Timer0에 할당했습니다.
 마지막으로 TMR0ON = 1을 설정하여 Timer0 동작을 시작했습니다.
-```
+
 ### Timer0 Interrupt Service Routine
 ```c
 void __interrupt() Isr_Tmr0(void)
@@ -82,7 +82,7 @@ void __interrupt() Isr_Tmr0(void)
         }
     }
 }
-
+```
 Timer0 overflow가 발생하면 TMR0IF flag가 set되고 ISR이 실행됩니다.
 ISR 내부에서는 먼저 interrupt flag를 clear한 뒤, overflow 발생 횟수를 count 변수로 누적합니다.
 지정한 횟수에 도달하면 PORTD 전체 값을 반전시켜 LED 상태를 토글합니다.
@@ -104,4 +104,4 @@ Timer0 tick period: 1 us
 
 즉, 현재 설정에서는 약 2초마다 PORTD 출력이 반전됩니다.
 
-```
+
