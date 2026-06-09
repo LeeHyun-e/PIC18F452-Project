@@ -17,8 +17,8 @@ void main(void) {
     My_TRISD.byte = 0x00; //pin output setup
     My_PORTD.byte = 0x00; //reset pin
     
-    INTCON_Init(); //
-    T0CON_Init(); //
+    INTCON_Init(); 
+    T0CON_Init(); 
 
     while(1)
     {
